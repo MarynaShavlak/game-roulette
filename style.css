@@ -109,11 +109,11 @@ body {
     position: absolute;
     z-index: -99;
 }
-#blood.player1 {
+#player1 #blood  {
 	top: -81px;
     left: -53px;
 }
-#blood.player2 {
+#player2 #blood  {
 	top: -81px;
     left: -34px;
     transform: scale(-1, 1);
