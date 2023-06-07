@@ -8,24 +8,24 @@ const bullet = document.querySelector('#bullet');
 const baraban = document.querySelector('#baraban');
 
 function startGame() {
-  btnShot.className = 'off';
+  btnShot.classList.add('off');
   bullet.style.display = 'block';
   revolver.style.display = 'block';
   btnShot.onclick = null;
   let rotateDegree = 0;
 
-  const timer = setInterval(function () {
+  const timer = setInterval(() => {
     rotateDegree += 10;
     baraban.style.transform = `rotate(${rotateDegree}deg)`;
 
     if (rotateDegree > 300) {
       bullet.style.display = 'none';
     }
-    if (rotateDegree == 720) {
+    if (rotateDegree === 720) {
       clearInterval(timer);
       btnShot.innerText = 'Make a shot';
       btnShot.onclick = makeShot;
-      btnShot.className = '';
+      btnShot.classList.remove('off');
     }
   }, 50);
 }
@@ -55,18 +55,13 @@ function makeShot() {
     showBlood();
     endGame();
   } else {
-    if (currentPlayer == 1) {
-      rotationRight();
-      currentPlayer = 2;
-    } else {
-      rotationLeft();
-      currentPlayer = 1;
-    }
+    currentPlayer === 1 ? rotationRight() : rotationLeft();
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
     let rotate = rotateBaraban;
-    const barabanTimer = setInterval(function () {
+    const barabanTimer = setInterval(() => {
       rotate += 10;
       baraban.style.transform = `rotate(${rotate}deg)`;
-      if ((rotate = rotateBaraban + 60)) {
+      if (rotate === rotateBaraban + 60) {
         clearInterval(barabanTimer);
         rotateBaraban = rotate;
       }
